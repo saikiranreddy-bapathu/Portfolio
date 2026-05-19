@@ -78,10 +78,10 @@ export function Hero({ setActiveSection }: any) {
       >
         <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-6 gap-4 flex-grow h-full min-h-0 relative">
           
-          {/* Main Profile Card - Size reduced, height constrained, centered on mobile */}
+          {/* Main Profile Card - Added mobile-specific border and neon glow, resets on md (desktop) */}
           <motion.div 
             variants={childVariants} 
-            className="md:col-span-8 md:row-span-4 bg-slate-900/80 border border-slate-800/50 rounded-[2rem] p-5 md:p-8 flex flex-col justify-center md:justify-between relative overflow-y-auto no-scrollbar group h-full max-h-[85vh] md:max-h-none my-auto"
+            className="md:col-span-8 md:row-span-4 bg-slate-900/80 border border-[#00E5FF]/80 shadow-[0_0_40px_rgba(0,229,255,0.35)] md:border-slate-800/50 md:shadow-none rounded-[2rem] p-5 md:p-8 flex flex-col justify-center md:justify-between relative overflow-y-auto no-scrollbar group h-[85vh] md:h-full max-h-[85vh] md:max-h-none my-auto"
           >
             
             {/* Subtle background glow */}
@@ -118,12 +118,12 @@ export function Hero({ setActiveSection }: any) {
                 </motion.div>
               </h1>
               
-              {/* Reduced text size and margins for mobile description */}
+              {/* Updated wording to perfectly match the provided image */}
               <motion.p 
                 variants={textVariants}
-                className="text-slate-300 leading-relaxed text-[13px] md:text-base max-w-xl mt-2 md:mt-4 px-2 md:px-0"
+                className="text-slate-300 leading-relaxed text-[13px] md:text-base max-w-xl mt-4 md:mt-4 px-4 md:px-0"
               >
-                Aspiring Software Developer with knowledge in Java Full Stack Development and web technologies. Passionate about learning modern technologies, building efficient applications, and enhancing problem-solving skills while contributing to innovative software solutions.
+                Aspiring Software Developer with knowledge in Full Stack Development and web technologies. Passionate about learning modern technologies, building efficient applications, and enhancing problem-solving skills while contributing to innovative software solutions.
               </motion.p>
             </div>
           </motion.div>
