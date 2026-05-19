@@ -49,50 +49,54 @@ export function Hero({ setActiveSection }: any) {
         animate="animate"
         exit="exit"
       >
-        <div className="grid grid-cols-1 md:grid-cols-12 grid-rows-[auto] md:grid-rows-6 gap-4 flex-grow min-h-0">
+        {/* Adjusted Grid to take full height on mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-12 grid-rows-1 md:grid-rows-6 gap-4 flex-grow h-full min-h-0">
           
-          {/* Main Profile Card */}
-          <motion.div variants={childVariants} className="md:col-span-8 md:row-span-4 bg-slate-900/80 border border-slate-800/50 rounded-3xl p-8 flex flex-col justify-between relative overflow-y-auto no-scrollbar group overflow-hidden">
+          {/* Main Profile Card - Fitted to mobile, centered text */}
+          <motion.div variants={childVariants} className="md:col-span-8 md:row-span-4 bg-slate-900/80 border border-slate-800/50 rounded-3xl p-6 md:p-8 flex flex-col justify-center md:justify-between relative overflow-y-auto no-scrollbar group overflow-hidden h-full">
             
             {/* Subtle background glow */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-[#00E5FF]/10 blur-3xl rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
+            <div className="absolute top-0 right-0 md:w-96 md:h-96 w-64 h-64 bg-[#00E5FF]/10 blur-3xl rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
 
-            <div className="z-10 relative">
-              <div className="bg-black/80 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-6 inline-block font-mono border border-slate-700 text-[#00E5FF]">● AVAILABLE FOR NEW OPPORTUNITIES</div>
+            <div className="z-10 relative flex flex-col items-center md:items-start text-center md:text-left w-full">
+              <div className="bg-black/80 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-6 inline-block font-mono border border-slate-700 text-[#00E5FF]">
+                ● AVAILABLE FOR NEW OPPORTUNITIES
+              </div>
               
-              <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-4 tracking-tighter">
+              <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-4 tracking-tighter flex flex-col items-center md:items-start">
                 
-                {/* Initial Slide-Up & Fade-In for Name */}
+                {/* Upgraded Spring Animation for Name */}
                 <motion.div 
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  initial={{ y: 50, opacity: 0, scale: 0.9 }}
+                  animate={{ y: 0, opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, type: "spring", bounce: 0.5 }}
                   className="inline-block relative drop-shadow-[0_0_15px_rgba(0,229,255,0.5)]"
                 >
                   <span className="text-shimmer block pb-2">
                     Sai Kiran.
                   </span>
                 </motion.div>
-                <br/>
                 
-                {/* Initial Slide-Up & Fade-In for Software Developer */}
+                {/* Upgraded Spring Animation for Role */}
                 <motion.div
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-                  className="inline-block"
+                  initial={{ y: 40, opacity: 0, scale: 0.95 }}
+                  animate={{ y: 0, opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, delay: 0.15, type: "spring", bounce: 0.4 }}
+                  className="inline-block mt-2 md:mt-0"
                 >
-                  <span className="text-transparent stroke-text inline-block group-hover:scale-[1.02] transition-transform duration-500 cursor-default" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.3)'}}>
+                  <span 
+                    className="text-transparent stroke-text inline-block group-hover:scale-[1.02] transition-transform duration-500 cursor-default" 
+                    style={{ WebkitTextStroke: '1px rgba(255,255,255,0.3)'}}
+                  >
                     Software<br/>Developer.
                   </span>
                 </motion.div>
-
               </h1>
               
               <motion.p 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1, delay: 0.6 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
                 className="text-slate-300 leading-relaxed text-sm md:text-base max-w-xl mt-4"
               >
                 Aspiring Software Developer with knowledge in Java Full Stack Development and web technologies. Passionate about learning modern technologies, building efficient applications, and enhancing problem-solving skills while contributing to innovative software solutions.
@@ -100,10 +104,12 @@ export function Hero({ setActiveSection }: any) {
             </div>
           </motion.div>
 
-          {/* Featured Project (Selected Work) - Mobile Blink Enabled */}
+          {/* ALL CARDS BELOW ARE HIDDEN ON MOBILE USING `hidden md:block` or `hidden md:flex` */}
+
+          {/* Featured Project (Selected Work) */}
           <motion.div 
             variants={childVariants} 
-            className="mobile-blink md:col-span-4 md:row-span-3 bg-slate-900/80 border border-slate-800/50 rounded-3xl p-0 overflow-hidden relative group cursor-pointer"
+            className="hidden md:block mobile-blink md:col-span-4 md:row-span-3 bg-slate-900/80 border border-slate-800/50 rounded-3xl p-0 overflow-hidden relative group cursor-pointer"
             onClick={() => setActiveSection('projects')}
           >
             <div className="absolute top-6 right-6 z-30">
@@ -130,10 +136,10 @@ export function Hero({ setActiveSection }: any) {
             </div>
           </motion.div>
 
-          {/* Skills (My Stack) - Mobile Blink Enabled */}
+          {/* Skills (My Stack) */}
           <motion.div 
             variants={childVariants} 
-            className="mobile-blink md:col-span-4 md:row-span-2 bg-slate-900/80 border border-slate-800/50 rounded-3xl p-6 flex flex-col justify-between cursor-pointer group" 
+            className="hidden md:flex mobile-blink md:col-span-4 md:row-span-2 bg-slate-900/80 border border-slate-800/50 rounded-3xl p-6 flex-col justify-between cursor-pointer group" 
             onClick={() => setActiveSection('skills')}
           >
             <div className="flex flex-wrap gap-2">
@@ -148,10 +154,9 @@ export function Hero({ setActiveSection }: any) {
             </div>
           </motion.div>
 
-          {/* Stats Card - Upgraded Font & Styling */}
-          <motion.div variants={childVariants} className="md:col-span-8 md:row-span-2 bg-slate-900/80 border border-slate-800/50 text-white rounded-3xl p-6 md:p-8 flex justify-between items-end overflow-hidden relative group">
+          {/* Stats Card */}
+          <motion.div variants={childVariants} className="hidden md:flex md:col-span-8 md:row-span-2 bg-slate-900/80 border border-slate-800/50 text-white rounded-3xl p-6 md:p-8 justify-between items-end overflow-hidden relative group">
             <div className="flex flex-col z-10">
-              {/* Premium bold font for stats */}
               <span className="text-5xl md:text-6xl font-extrabold tracking-tighter text-white/95">2026</span>
               <span className="text-[10px] md:text-xs font-bold font-mono uppercase tracking-widest text-slate-400 mt-2">Graduation</span>
             </div>
@@ -165,10 +170,10 @@ export function Hero({ setActiveSection }: any) {
             </div>
           </motion.div>
 
-          {/* Restored CTA Status Card - Clean Font, Perfect Alignment */}
+          {/* CTA Status Card */}
           <motion.div 
             variants={childVariants} 
-            className="md:col-span-4 md:row-span-1 bg-slate-800/90 border border-slate-700/50 rounded-3xl p-6 flex items-center justify-between cursor-pointer group hover:bg-slate-800 transition-colors duration-300" 
+            className="hidden md:flex md:col-span-4 md:row-span-1 bg-slate-800/90 border border-slate-700/50 rounded-3xl p-6 items-center justify-between cursor-pointer group hover:bg-slate-800 transition-colors duration-300" 
             onClick={() => setActiveSection('contact')}
           >
              <div className="flex flex-col justify-center h-full">
@@ -180,7 +185,6 @@ export function Hero({ setActiveSection }: any) {
                  <p className="text-[10px] text-slate-400 font-mono font-bold uppercase tracking-[0.2em]">Status</p>
                </div>
                
-               {/* Restored original text, improved letter spacing and weight */}
                <span className="text-lg md:text-xl font-medium tracking-wide text-white group-hover:text-[#00E5FF] transition-colors duration-300">
                  Let's build together
                </span>
