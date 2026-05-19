@@ -44,11 +44,11 @@ export function SplashScreen({ onComplete }: { onComplete: () => void }) {
           style={{ willChange: 'opacity, transform' }}
         >
           {/* Background Marquees */}
-          <div className="absolute inset-0 flex flex-col justify-between py-[15vh] opacity-15 pointer-events-none">
+          <div className="absolute inset-0 flex flex-col justify-center gap-12 md:gap-[20vh] opacity-15 pointer-events-none">
              <motion.div 
                animate={{ x: ["-50%", "0%"] }} 
                transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
-               className="whitespace-nowrap text-[12vw] font-black tracking-tighter text-white uppercase leading-none"
+               className="whitespace-nowrap text-[18vw] md:text-[12vw] font-black tracking-tighter text-white uppercase leading-none"
                style={{ willChange: 'transform' }}
              >
                SAI KIRAN REDDY • SAI KIRAN REDDY • SAI KIRAN REDDY • SAI KIRAN REDDY •
@@ -56,7 +56,7 @@ export function SplashScreen({ onComplete }: { onComplete: () => void }) {
              <motion.div 
                animate={{ x: ["0%", "-50%"] }} 
                transition={{ repeat: Infinity, duration: 50, ease: "linear" }}
-               className="whitespace-nowrap text-[12vw] font-black tracking-tighter text-transparent uppercase leading-none mt-auto"
+               className="whitespace-nowrap text-[18vw] md:text-[12vw] font-black tracking-tighter text-transparent uppercase leading-none"
                style={{ willChange: 'transform', WebkitTextStroke: '1px rgba(255,255,255,0.4)' }}
              >
                JAVA FULL STACK ENGINEER • JAVA FULL STACK ENGINEER •
@@ -66,7 +66,7 @@ export function SplashScreen({ onComplete }: { onComplete: () => void }) {
           <div className="relative w-full h-full pointer-events-none">
             {!isInitializing && (
                <motion.div 
-                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/50 text-xl font-mono tracking-[0.2em] uppercase text-center"
+                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/50 text-sm md:text-xl font-mono tracking-[0.2em] uppercase text-center w-full px-4"
                  animate={{ opacity: [0.4, 1, 0.4] }}
                  transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
                  style={{ willChange: 'opacity' }}
@@ -113,8 +113,8 @@ export function SplashScreen({ onComplete }: { onComplete: () => void }) {
                  </motion.div>
 
                  {/* Bar at the bottom */}
-                 <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[80vw] max-w-sm flex flex-col gap-2">
-                   <div className="text-white/50 text-xs font-mono tracking-widest uppercase text-center">
+                 <div className="absolute bottom-12 md:bottom-10 left-1/2 -translate-x-1/2 w-[80vw] max-w-sm flex flex-col gap-2">
+                   <div className="text-white/50 text-[10px] md:text-xs font-mono tracking-widest uppercase text-center">
                      Initializing...
                    </div>
                    <div className="w-full h-1 bg-white/20 rounded-full overflow-hidden">

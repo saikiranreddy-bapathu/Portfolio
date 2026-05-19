@@ -3,99 +3,198 @@ import { sectionVariants, childVariants } from './animations';
 
 export function Hero({ setActiveSection }: any) {
   return (
-    <motion.div 
-      className="absolute inset-0 w-full max-w-7xl mx-auto p-6 h-full flex flex-col pt-0 pb-12 overflow-y-auto no-scrollbar"
-      variants={sectionVariants}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-    >
-      <div className="grid grid-cols-1 md:grid-cols-12 grid-rows-[auto] md:grid-rows-6 gap-4 flex-grow min-h-0">
-        
-        {/* Main Profile Card */}
-        <motion.div variants={childVariants} className="md:col-span-8 md:row-span-4 bg-slate-900/80 border border-slate-800/50 rounded-3xl p-8 flex flex-col justify-between relative overflow-y-auto no-scrollbar group">
-          <div className="z-10">
-            <div className="bg-black/80 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-6 inline-block font-mono border border-slate-700 text-[#00E5FF]">● AVAILABLE FOR NEW OPPORTUNITIES</div>
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-4 tracking-tighter text-white">Sai Kiran.<br/><span className="text-transparent stroke-text" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.2)'}}>Software<br/>Developer.</span></h1>
-            <p className="text-slate-300 leading-relaxed text-sm md:text-base max-w-xl">Aspiring Software Developer with knowledge in Java Full Stack Development and web technologies. Passionate about learning modern technologies, building efficient applications, and enhancing problem-solving skills while contributing to innovative software solutions.</p>
-          </div>
+    <>
+      <style>
+        {`
+          /* Custom Mobile-Only Blink Animation */
+          @media (max-width: 767px) {
+            .mobile-blink {
+              animation: mobileFadeUpBlink 4s ease-in-out infinite;
+            }
+          }
+          @keyframes mobileFadeUpBlink {
+            0%, 100% { 
+              box-shadow: 0 0 0px rgba(0,229,255,0); 
+              transform: translateY(0px);
+              border-color: rgba(30, 41, 59, 0.5);
+            }
+            50% { 
+              box-shadow: 0 8px 20px rgba(0,229,255,0.25); 
+              transform: translateY(-4px);
+              border-color: rgba(0, 229, 255, 0.5);
+            }
+          }
           
+          /* Native CSS Shimmer for guaranteed continuous glow */
+          .text-shimmer {
+            background: linear-gradient(to right, #ffffff 20%, #00E5FF 50%, #ffffff 80%);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 4s linear infinite;
+          }
+          @keyframes shine {
+            to {
+              background-position: 200% center;
+            }
+          }
+        `}
+      </style>
 
+      <motion.div 
+        className="absolute inset-0 w-full max-w-7xl mx-auto p-6 h-full flex flex-col pt-0 pb-12 overflow-y-auto no-scrollbar"
+        variants={sectionVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-12 grid-rows-[auto] md:grid-rows-6 gap-4 flex-grow min-h-0">
           
-          {/* <div className="absolute -right-12 -bottom-12 w-48 h-48 bg-blue-600/20 blur-3xl rounded-full"></div> */}
-        </motion.div>
+          {/* Main Profile Card */}
+          <motion.div variants={childVariants} className="md:col-span-8 md:row-span-4 bg-slate-900/80 border border-slate-800/50 rounded-3xl p-8 flex flex-col justify-between relative overflow-y-auto no-scrollbar group overflow-hidden">
+            
+            {/* Subtle background glow */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-[#00E5FF]/10 blur-3xl rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
 
-        {/* Featured Project Card (Shortcut) */}
-        <motion.div 
-          variants={childVariants} 
-          className="md:col-span-4 md:row-span-3 bg-slate-900/80 border border-slate-800/50 rounded-3xl p-0 overflow-hidden relative group cursor-pointer"
-          onClick={() => setActiveSection('projects')}
-        >
-          <div className="absolute top-6 left-6 z-20">
-            <div className="bg-black/90 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-2 inline-block text-[#00E5FF]">SELECTED WORK</div>
-            <h2 className="text-2xl font-bold text-white">Drive AI Agent</h2>
-          </div>
-          <div className="w-full h-full bg-gradient-to-br from-slate-800/80 to-black flex items-center justify-center pt-24 min-h-[250px]">
-             <div className="w-[80%] h-[80%] bg-slate-900 rounded-t-2xl border-t border-x border-slate-700 p-4 transform group-hover:-translate-y-2 transition-transform duration-500">
-               <div className="flex space-x-2 mb-4">
-                  <div className="w-2 h-2 rounded-full bg-slate-600"></div>
-                  <div className="w-2 h-2 rounded-full bg-slate-600"></div>
-                  <div className="w-2 h-2 rounded-full bg-slate-600"></div>
+            <div className="z-10 relative">
+              <div className="bg-black/80 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-6 inline-block font-mono border border-slate-700 text-[#00E5FF]">● AVAILABLE FOR NEW OPPORTUNITIES</div>
+              
+              <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-4 tracking-tighter">
+                
+                {/* Initial Slide-Up & Fade-In for Name */}
+                <motion.div 
+                  initial={{ y: 30, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  className="inline-block relative drop-shadow-[0_0_15px_rgba(0,229,255,0.5)]"
+                >
+                  <span className="text-shimmer block pb-2">
+                    Sai Kiran.
+                  </span>
+                </motion.div>
+                <br/>
+                
+                {/* Initial Slide-Up & Fade-In for Software Developer */}
+                <motion.div
+                  initial={{ y: 30, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+                  className="inline-block"
+                >
+                  <span className="text-transparent stroke-text inline-block group-hover:scale-[1.02] transition-transform duration-500 cursor-default" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.3)'}}>
+                    Software<br/>Developer.
+                  </span>
+                </motion.div>
+
+              </h1>
+              
+              <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0.6 }}
+                className="text-slate-300 leading-relaxed text-sm md:text-base max-w-xl mt-4"
+              >
+                Aspiring Software Developer with knowledge in Java Full Stack Development and web technologies. Passionate about learning modern technologies, building efficient applications, and enhancing problem-solving skills while contributing to innovative software solutions.
+              </motion.p>
+            </div>
+          </motion.div>
+
+          {/* Featured Project (Selected Work) - Mobile Blink Enabled */}
+          <motion.div 
+            variants={childVariants} 
+            className="mobile-blink md:col-span-4 md:row-span-3 bg-slate-900/80 border border-slate-800/50 rounded-3xl p-0 overflow-hidden relative group cursor-pointer"
+            onClick={() => setActiveSection('projects')}
+          >
+            <div className="absolute top-6 right-6 z-30">
+              <svg className="w-5 h-5 text-slate-400 group-hover:text-[#00E5FF] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </div>
+
+            <div className="absolute top-6 left-6 z-20">
+              <div className="bg-black/90 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-2 inline-block text-[#00E5FF]">SELECTED WORK</div>
+              <h2 className="text-2xl font-bold text-white">Drive AI Agent</h2>
+            </div>
+            <div className="w-full h-full bg-gradient-to-br from-slate-800/80 to-black flex items-center justify-center pt-24 min-h-[250px]">
+               <div className="w-[80%] h-[80%] bg-slate-900 rounded-t-2xl border-t border-x border-slate-700 p-4 transform group-hover:-translate-y-2 transition-transform duration-500">
+                 <div className="flex space-x-2 mb-4">
+                    <div className="w-2 h-2 rounded-full bg-slate-600"></div>
+                    <div className="w-2 h-2 rounded-full bg-slate-600"></div>
+                    <div className="w-2 h-2 rounded-full bg-slate-600"></div>
+                 </div>
+                 <div className="grid grid-cols-2 gap-2">
+                    <div className="h-16 bg-slate-800 rounded-md"></div>
+                    <div className="h-16 bg-slate-800 rounded-md"></div>
+                    <div className="col-span-2 h-12 bg-slate-800/50 rounded-md"></div>
+                 </div>
                </div>
-               <div className="grid grid-cols-2 gap-2">
-                  <div className="h-16 bg-slate-800 rounded-md"></div>
-                  <div className="h-16 bg-slate-800 rounded-md"></div>
-                  <div className="col-span-2 h-12 bg-slate-800/50 rounded-md"></div>
+            </div>
+          </motion.div>
+
+          {/* Skills (My Stack) - Mobile Blink Enabled */}
+          <motion.div 
+            variants={childVariants} 
+            className="mobile-blink md:col-span-4 md:row-span-2 bg-slate-900/80 border border-slate-800/50 rounded-3xl p-6 flex flex-col justify-between cursor-pointer group" 
+            onClick={() => setActiveSection('skills')}
+          >
+            <div className="flex flex-wrap gap-2">
+              <span className="px-2 py-1 bg-slate-800/80 text-[10px] rounded border border-slate-700/50 font-mono text-slate-200 group-hover:border-[#00E5FF]/50 transition-colors">JAVA</span>
+              <span className="px-2 py-1 bg-slate-800/80 text-[10px] rounded border border-slate-700/50 font-mono text-slate-200 group-hover:border-[#00E5FF]/50 transition-colors">SPRING BOOT</span>
+              <span className="px-2 py-1 bg-slate-800/80 text-[10px] rounded border border-slate-700/50 font-mono text-slate-200 group-hover:border-[#00E5FF]/50 transition-colors">REACT</span>
+              <span className="px-2 py-1 bg-slate-800/80 text-[10px] rounded border border-slate-700/50 font-mono text-slate-200 group-hover:border-[#00E5FF]/50 transition-colors">SQL</span>
+            </div>
+            <div className="flex justify-between items-center mt-4">
+              <span className="text-xs text-slate-400 font-mono uppercase tracking-widest group-hover:text-[#00E5FF] transition-colors">My Stack</span>
+               <svg className="w-4 h-4 text-slate-400 group-hover:text-[#00E5FF] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </div>
+          </motion.div>
+
+          {/* Stats Card - Upgraded Font & Styling */}
+          <motion.div variants={childVariants} className="md:col-span-8 md:row-span-2 bg-slate-900/80 border border-slate-800/50 text-white rounded-3xl p-6 md:p-8 flex justify-between items-end overflow-hidden relative group">
+            <div className="flex flex-col z-10">
+              {/* Premium bold font for stats */}
+              <span className="text-5xl md:text-6xl font-extrabold tracking-tighter text-white/95">2026</span>
+              <span className="text-[10px] md:text-xs font-bold font-mono uppercase tracking-widest text-slate-400 mt-2">Graduation</span>
+            </div>
+            <div className="flex flex-col z-10">
+              <span className="text-5xl md:text-6xl font-extrabold tracking-tighter text-white/95">8.0</span>
+              <span className="text-[10px] md:text-xs font-bold font-mono uppercase tracking-widest text-slate-400 mt-2">CGPA</span>
+            </div>
+            <div className="flex flex-col z-10">
+              <span className="text-5xl md:text-6xl font-extrabold tracking-tighter text-white/95">ECE</span>
+              <span className="text-[10px] md:text-xs font-bold font-mono uppercase tracking-widest text-slate-400 mt-2">B.Tech</span>
+            </div>
+          </motion.div>
+
+          {/* Restored CTA Status Card - Clean Font, Perfect Alignment */}
+          <motion.div 
+            variants={childVariants} 
+            className="md:col-span-4 md:row-span-1 bg-slate-800/90 border border-slate-700/50 rounded-3xl p-6 flex items-center justify-between cursor-pointer group hover:bg-slate-800 transition-colors duration-300" 
+            onClick={() => setActiveSection('contact')}
+          >
+             <div className="flex flex-col justify-center h-full">
+               <div className="flex items-center gap-2 mb-1.5">
+                 <div className="relative flex h-2 w-2 items-center justify-center">
+                    <span className="animate-ping absolute inline-flex h-2.5 w-2.5 rounded-full bg-[#00E5FF] opacity-60"></span>
+                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#00E5FF]"></span>
+                 </div>
+                 <p className="text-[10px] text-slate-400 font-mono font-bold uppercase tracking-[0.2em]">Status</p>
                </div>
+               
+               {/* Restored original text, improved letter spacing and weight */}
+               <span className="text-lg md:text-xl font-medium tracking-wide text-white group-hover:text-[#00E5FF] transition-colors duration-300">
+                 Let's build together
+               </span>
              </div>
-          </div>
-        </motion.div>
-
-        {/* Skills Card */}
-        <motion.div variants={childVariants} className="md:col-span-4 md:row-span-2 bg-slate-900/80 border border-slate-800/50 rounded-3xl p-6 flex flex-col justify-between cursor-pointer group" onClick={() => setActiveSection('skills')}>
-          <div className="flex flex-wrap gap-2">
-            <span className="px-2 py-1 bg-slate-800/80 text-[10px] rounded border border-slate-700/50 font-mono text-slate-200 group-hover:border-[#00E5FF]/50 transition-colors">JAVA</span>
-            <span className="px-2 py-1 bg-slate-800/80 text-[10px] rounded border border-slate-700/50 font-mono text-slate-200 group-hover:border-[#00E5FF]/50 transition-colors">SPRING BOOT</span>
-            <span className="px-2 py-1 bg-slate-800/80 text-[10px] rounded border border-slate-700/50 font-mono text-slate-200 group-hover:border-[#00E5FF]/50 transition-colors">REACT</span>
-            <span className="px-2 py-1 bg-slate-800/80 text-[10px] rounded border border-slate-700/50 font-mono text-slate-200 group-hover:border-[#00E5FF]/50 transition-colors">SQL</span>
-          </div>
-          <div className="flex justify-between items-center mt-4">
-            <span className="text-xs text-slate-400 font-mono uppercase tracking-widest group-hover:text-[#00E5FF] transition-colors">My Stack</span>
-             <svg className="w-4 h-4 text-slate-400 group-hover:text-[#00E5FF] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-          </div>
-        </motion.div>
-
-        {/* Stats Card */}
-        <motion.div variants={childVariants} className="md:col-span-6 md:row-span-2 bg-slate-900/80 border border-slate-800/50 text-white rounded-3xl p-6 md:p-8 flex justify-between items-end overflow-hidden relative group">
-          <div className="flex flex-col z-10">
-            <span className="text-4xl md:text-5xl font-bold tracking-tighter">2026</span>
-            <span className="text-[10px] md:text-xs font-bold font-mono uppercase tracking-widest text-slate-400 mt-1">Graduation</span>
-          </div>
-          <div className="flex flex-col z-10">
-            <span className="text-4xl md:text-5xl font-bold tracking-tighter">8.0</span>
-            <span className="text-[10px] md:text-xs font-bold font-mono uppercase tracking-widest text-slate-400 mt-1">CGPA</span>
-          </div>
-          <div className="flex flex-col z-10">
-            <span className="text-4xl md:text-5xl font-bold tracking-tighter">ECE</span>
-            <span className="text-[10px] md:text-xs font-bold font-mono uppercase tracking-widest text-slate-400 mt-1">B.Tech</span>
-          </div>
-          {/* <div className="absolute -top-4 -right-4 w-32 h-32 bg-[#00E5FF]/10 rounded-full group-hover:scale-110 transition-transform duration-700 blur-2xl"></div> */}
-        </motion.div>
-
-        {/* CTA Card */}
-        <motion.div variants={childVariants} className="md:col-span-6 md:row-span-2 bg-slate-800/90 border border-slate-700/50 rounded-3xl p-6 flex flex-col justify-between cursor-pointer group" onClick={() => setActiveSection('contact')}>
-           <p className="text-xs text-slate-400 uppercase font-bold tracking-widest font-mono">Status</p>
-           <div className="flex items-center justify-between mt-2">
-             <span className="text-lg md:text-2xl font-medium text-white group-hover:text-[#00E5FF] transition-colors">Let's build together</span>
-             <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center transform group-hover:rotate-45 transition-transform">
-                <svg className="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 10h14m0 0l-4-4m4 4l-4 4"></path>
+             
+             <div className="w-10 h-10 md:w-11 md:h-11 bg-white/10 border border-white/20 group-hover:bg-white rounded-full flex items-center justify-center transform group-hover:rotate-45 transition-all duration-300 shrink-0">
+                <svg className="w-4 h-4 md:w-5 md:h-5 text-white group-hover:text-black transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 17L17 7M7 7h10v10"></path>
                 </svg>
              </div>
-           </div>
-        </motion.div>
+          </motion.div>
 
-      </div>
-    </motion.div>
+        </div>
+      </motion.div>
+    </>
   );
 }
