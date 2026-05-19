@@ -2,6 +2,32 @@ import { motion } from 'motion/react';
 import { sectionVariants, childVariants } from './animations';
 
 export function Hero({ setActiveSection }: any) {
+  
+  // Explicit variants to ensure animations trigger properly inside the parent motion group
+  const nameVariants = {
+    initial: { y: 40, opacity: 0, scale: 0.9 },
+    animate: { 
+      y: 0, opacity: 1, scale: 1, 
+      transition: { duration: 0.8, type: "spring", bounce: 0.5 } 
+    }
+  };
+
+  const roleVariants = {
+    initial: { y: 30, opacity: 0, scale: 0.95 },
+    animate: { 
+      y: 0, opacity: 1, scale: 1, 
+      transition: { duration: 0.8, delay: 0.15, type: "spring", bounce: 0.4 } 
+    }
+  };
+
+  const textVariants = {
+    initial: { opacity: 0, y: 15 },
+    animate: { 
+      opacity: 1, y: 0, 
+      transition: { duration: 0.8, delay: 0.3 } 
+    }
+  };
+
   return (
     <>
       <style>
@@ -42,47 +68,46 @@ export function Hero({ setActiveSection }: any) {
         `}
       </style>
 
+      {/* Reduced outer padding on mobile to prevent clipping */}
       <motion.div 
-        className="absolute inset-0 w-full max-w-7xl mx-auto p-6 h-full flex flex-col pt-0 pb-12 overflow-y-auto no-scrollbar"
+        className="absolute inset-0 w-full max-w-7xl mx-auto p-3 md:p-6 h-full flex flex-col pt-0 pb-6 md:pb-12 overflow-hidden"
         variants={sectionVariants}
         initial="initial"
         animate="animate"
         exit="exit"
       >
-        {/* Adjusted Grid to take full height on mobile */}
-        <div className="grid grid-cols-1 md:grid-cols-12 grid-rows-1 md:grid-rows-6 gap-4 flex-grow h-full min-h-0">
+        <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-6 gap-4 flex-grow h-full min-h-0 relative">
           
-          {/* Main Profile Card - Fitted to mobile, centered text */}
-          <motion.div variants={childVariants} className="md:col-span-8 md:row-span-4 bg-slate-900/80 border border-slate-800/50 rounded-3xl p-6 md:p-8 flex flex-col justify-center md:justify-between relative overflow-y-auto no-scrollbar group overflow-hidden h-full">
+          {/* Main Profile Card - Size reduced, height constrained, centered on mobile */}
+          <motion.div 
+            variants={childVariants} 
+            className="md:col-span-8 md:row-span-4 bg-slate-900/80 border border-slate-800/50 rounded-[2rem] p-5 md:p-8 flex flex-col justify-center md:justify-between relative overflow-y-auto no-scrollbar group h-full max-h-[85vh] md:max-h-none my-auto"
+          >
             
             {/* Subtle background glow */}
-            <div className="absolute top-0 right-0 md:w-96 md:h-96 w-64 h-64 bg-[#00E5FF]/10 blur-3xl rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
+            <div className="absolute top-0 right-0 md:w-96 md:h-96 w-56 h-56 bg-[#00E5FF]/10 blur-3xl rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
 
-            <div className="z-10 relative flex flex-col items-center md:items-start text-center md:text-left w-full">
-              <div className="bg-black/80 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-6 inline-block font-mono border border-slate-700 text-[#00E5FF]">
+            <div className="z-10 relative flex flex-col items-center md:items-start text-center md:text-left w-full mt-2 md:mt-0">
+              <div className="bg-black/80 px-3 py-1 rounded-full text-[9px] md:text-[10px] font-bold tracking-widest uppercase mb-4 md:mb-6 inline-block font-mono border border-slate-700 text-[#00E5FF]">
                 ● AVAILABLE FOR NEW OPPORTUNITIES
               </div>
               
-              <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-4 tracking-tighter flex flex-col items-center md:items-start">
+              {/* Reduced font size for mobile (text-4xl) to ensure it fits perfectly */}
+              <h1 className="text-4xl md:text-7xl font-bold leading-tight mb-3 md:mb-4 tracking-tighter flex flex-col items-center md:items-start">
                 
-                {/* Upgraded Spring Animation for Name */}
+                {/* Now using explicit variants so it animates reliably on load */}
                 <motion.div 
-                  initial={{ y: 50, opacity: 0, scale: 0.9 }}
-                  animate={{ y: 0, opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, type: "spring", bounce: 0.5 }}
+                  variants={nameVariants}
                   className="inline-block relative drop-shadow-[0_0_15px_rgba(0,229,255,0.5)]"
                 >
-                  <span className="text-shimmer block pb-2">
+                  <span className="text-shimmer block pb-1 md:pb-2">
                     Sai Kiran.
                   </span>
                 </motion.div>
                 
-                {/* Upgraded Spring Animation for Role */}
                 <motion.div
-                  initial={{ y: 40, opacity: 0, scale: 0.95 }}
-                  animate={{ y: 0, opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.15, type: "spring", bounce: 0.4 }}
-                  className="inline-block mt-2 md:mt-0"
+                  variants={roleVariants}
+                  className="inline-block mt-1 md:mt-0"
                 >
                   <span 
                     className="text-transparent stroke-text inline-block group-hover:scale-[1.02] transition-transform duration-500 cursor-default" 
@@ -93,18 +118,17 @@ export function Hero({ setActiveSection }: any) {
                 </motion.div>
               </h1>
               
+              {/* Reduced text size and margins for mobile description */}
               <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-slate-300 leading-relaxed text-sm md:text-base max-w-xl mt-4"
+                variants={textVariants}
+                className="text-slate-300 leading-relaxed text-[13px] md:text-base max-w-xl mt-2 md:mt-4 px-2 md:px-0"
               >
                 Aspiring Software Developer with knowledge in Java Full Stack Development and web technologies. Passionate about learning modern technologies, building efficient applications, and enhancing problem-solving skills while contributing to innovative software solutions.
               </motion.p>
             </div>
           </motion.div>
 
-          {/* ALL CARDS BELOW ARE HIDDEN ON MOBILE USING `hidden md:block` or `hidden md:flex` */}
+          {/* ALL CARDS BELOW ARE HIDDEN ON MOBILE */}
 
           {/* Featured Project (Selected Work) */}
           <motion.div 
