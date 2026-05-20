@@ -50,6 +50,20 @@ export function Hero({ setActiveSection }: any) {
               border-color: rgba(0, 229, 255, 0.5);
             }
           }
+
+          @media (max-width: 767px) {
+            .mobile-title-animate {
+              animation: mobileTitlePulse 3s ease-in-out infinite;
+            }
+          }
+          @keyframes mobileTitlePulse {
+            0%, 100% {
+              filter: drop-shadow(0 0 2px rgba(0, 229, 255, 0.3));
+            }
+            50% {
+              filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.8));
+            }
+          }
           
           /* Native CSS Shimmer for guaranteed continuous glow */
           .text-shimmer {
@@ -81,7 +95,7 @@ export function Hero({ setActiveSection }: any) {
           {/* Main Profile Card - Added mobile-specific border and neon glow, resets on md (desktop) */}
           <motion.div 
             variants={childVariants} 
-            className="md:col-span-8 md:row-span-4 bg-slate-900/80 border border-[#00E5FF]/80 shadow-[0_0_40px_rgba(0,229,255,0.35)] md:border-slate-800/50 md:shadow-none rounded-[2rem] p-5 md:p-8 flex flex-col justify-center md:justify-between relative overflow-y-auto no-scrollbar group h-[85vh] md:h-full max-h-[85vh] md:max-h-none my-auto"
+            className="md:col-span-8 md:row-span-4 bg-slate-900/80 border border-[#00E5FF]/80 shadow-[0_0_40px_rgba(0,229,255,0.35)] md:border-slate-800/50 md:shadow-none rounded-[2rem] p-5 md:p-8 flex flex-col justify-center md:justify-between relative overflow-y-auto no-scrollbar group h-[65vh] md:h-full max-h-[65vh] md:max-h-none my-auto transition-all duration-700 ease-in-out"
           >
             
             {/* Subtle background glow */}
@@ -93,14 +107,14 @@ export function Hero({ setActiveSection }: any) {
               </div>
               
               {/* Reduced font size for mobile (text-4xl) to ensure it fits perfectly */}
-              <h1 className="text-4xl md:text-7xl font-bold leading-tight mb-3 md:mb-4 tracking-tighter flex flex-col items-center md:items-start">
+              <h1 className="text-6xl md:text-7xl font-bold leading-tight mb-3 md:mb-4 tracking-tighter flex flex-col items-center md:items-start transition-all duration-700">
                 
                 {/* Now using explicit variants so it animates reliably on load */}
                 <motion.div 
                   variants={nameVariants}
                   className="inline-block relative drop-shadow-[0_0_15px_rgba(0,229,255,0.5)]"
                 >
-                  <span className="text-shimmer block pb-1 md:pb-2">
+                  <span className="text-shimmer block pb-1 md:pb-2 transition-all duration-700">
                     Sai Kiran.
                   </span>
                 </motion.div>
@@ -110,7 +124,7 @@ export function Hero({ setActiveSection }: any) {
                   className="inline-block mt-1 md:mt-0"
                 >
                   <span 
-                    className="text-transparent stroke-text inline-block group-hover:scale-[1.02] transition-transform duration-500 cursor-default" 
+                    className="text-transparent stroke-text inline-block group-hover:scale-[1.02] transition-all duration-700 cursor-default mobile-title-animate" 
                     style={{ WebkitTextStroke: '1px rgba(255,255,255,0.3)'}}
                   >
                     Software<br/>Developer.
