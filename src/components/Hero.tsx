@@ -53,8 +53,24 @@ export function Hero({ setActiveSection }: any) {
 
           @media (max-width: 767px) {
             .mobile-title-animate {
-              animation: mobileTitlePulse 3s ease-in-out infinite;
+              background: linear-gradient(270deg, #00E5FF, #ffffff, #00E5FF);
+              background-size: 200% 200%;
+              animation: gradientShift 3s ease infinite, mobileTitlePulse 3s ease-in-out infinite alternate;
+              -webkit-background-clip: text;
+              color: transparent;
             }
+            .mobile-card-animate {
+              animation: floatCard 6s ease-in-out infinite;
+            }
+          }
+          @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }
+          @keyframes floatCard {
+            0%, 100% { transform: translateY(0px); box-shadow: 0 0 40px rgba(0,229,255,0.35); }
+            50% { transform: translateY(-12px); box-shadow: 0 15px 50px rgba(0,229,255,0.6); }
           }
           @keyframes mobileTitlePulse {
             0%, 100% {
@@ -95,7 +111,7 @@ export function Hero({ setActiveSection }: any) {
           {/* Main Profile Card - Added mobile-specific border and neon glow, resets on md (desktop) */}
           <motion.div 
             variants={childVariants} 
-            className="md:col-span-8 md:row-span-4 bg-slate-900/80 border border-[#00E5FF]/80 shadow-[0_0_40px_rgba(0,229,255,0.35)] md:border-slate-800/50 md:shadow-none rounded-[2rem] p-5 md:p-8 flex flex-col justify-center md:justify-between relative overflow-y-auto no-scrollbar group h-[65vh] md:h-full max-h-[65vh] md:max-h-none my-auto transition-all duration-700 ease-in-out"
+            className="md:col-span-8 md:row-span-4 bg-slate-900/80 border border-[#00E5FF]/80 shadow-[0_0_40px_rgba(0,229,255,0.35)] md:border-slate-800/50 md:shadow-none rounded-[2rem] p-5 md:p-8 flex flex-col justify-center md:justify-between relative overflow-y-auto no-scrollbar group h-[65vh] md:h-full max-h-[65vh] md:max-h-none my-auto transition-all duration-700 ease-in-out mobile-card-animate"
           >
             
             {/* Subtle background glow */}
@@ -107,24 +123,24 @@ export function Hero({ setActiveSection }: any) {
               </div>
               
               {/* Reduced font size for mobile (text-4xl) to ensure it fits perfectly */}
-              <h1 className="text-6xl md:text-7xl font-bold leading-tight mb-3 md:mb-4 tracking-tighter flex flex-col items-center md:items-start transition-all duration-700">
+              <h1 className="font-bold leading-tight mb-3 md:mb-4 tracking-tighter flex flex-col items-center md:items-start transition-all duration-700">
                 
                 {/* Now using explicit variants so it animates reliably on load */}
                 <motion.div 
                   variants={nameVariants}
                   className="inline-block relative drop-shadow-[0_0_15px_rgba(0,229,255,0.5)]"
                 >
-                  <span className="text-shimmer block pb-1 md:pb-2 transition-all duration-700">
+                  <span className="text-shimmer block pb-1 md:pb-2 transition-all duration-700 text-7xl md:text-7xl leading-none">
                     Sai Kiran.
                   </span>
                 </motion.div>
                 
                 <motion.div
                   variants={roleVariants}
-                  className="inline-block mt-1 md:mt-0"
+                  className="inline-block mt-2 md:mt-1"
                 >
                   <span 
-                    className="text-transparent stroke-text inline-block group-hover:scale-[1.02] transition-all duration-700 cursor-default mobile-title-animate" 
+                    className="inline-block group-hover:scale-[1.02] transition-all duration-700 cursor-default mobile-title-animate md:text-transparent md:stroke-text text-3xl md:text-7xl" 
                     style={{ WebkitTextStroke: '1px rgba(255,255,255,0.3)'}}
                   >
                     Software<br/>Developer.

@@ -23,7 +23,7 @@ const projects = [
 export function Projects() {
   return (
     <motion.div 
-      className="absolute inset-0 w-full max-w-7xl mx-auto p-6 flex flex-col pt-0 pb-12"
+      className="absolute inset-0 w-full max-w-7xl mx-auto p-3 md:p-6 flex flex-col pt-0 pb-6 md:pb-12"
       variants={sectionVariants}
       initial="initial"
       animate="animate"
