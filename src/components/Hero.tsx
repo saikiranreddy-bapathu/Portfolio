@@ -52,33 +52,17 @@ export function Hero({ setActiveSection }: any) {
           }
 
           @media (max-width: 767px) {
-            .mobile-title-animate {
-              background: linear-gradient(270deg, #00E5FF, #ffffff, #00E5FF);
-              background-size: 200% 200%;
-              animation: gradientShift 3s ease infinite, mobileTitlePulse 3s ease-in-out infinite alternate;
-              -webkit-background-clip: text;
-              color: transparent;
-            }
             .mobile-card-animate {
               animation: floatCard 6s ease-in-out infinite;
             }
-          }
-          @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
           }
           @keyframes floatCard {
             0%, 100% { transform: translateY(0px); box-shadow: 0 0 40px rgba(0,229,255,0.35); }
             50% { transform: translateY(-12px); box-shadow: 0 15px 50px rgba(0,229,255,0.6); }
           }
-          @keyframes mobileTitlePulse {
-            0%, 100% {
-              filter: drop-shadow(0 0 2px rgba(0, 229, 255, 0.3));
-            }
-            50% {
-              filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.8));
-            }
+          @keyframes slideUpBg {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
           }
           
           /* Native CSS Shimmer for guaranteed continuous glow */
@@ -115,7 +99,22 @@ export function Hero({ setActiveSection }: any) {
           >
             
             {/* Subtle background glow */}
-            <div className="absolute top-0 right-0 md:w-96 md:h-96 w-56 h-56 bg-[#00E5FF]/10 blur-3xl rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
+            <div className="absolute top-0 right-0 md:w-96 md:h-96 w-56 h-56 bg-[#00E5FF]/10 blur-3xl rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none z-0"></div>
+
+            {/* Mobile Neural/Sparks Background */}
+            <div className="absolute inset-0 md:hidden pointer-events-none opacity-40 overflow-hidden rounded-[2rem] z-0">
+               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#00E5FF]/20 via-transparent to-transparent opacity-50 blur-xl mix-blend-screen animate-pulse"></div>
+               <svg width="100%" height="200%" className="absolute inset-0 opacity-50" style={{ animation: "slideUpBg 20s linear infinite" }}>
+                  <pattern id="neural" width="50" height="50" patternUnits="userSpaceOnUse">
+                    <circle cx="10" cy="10" r="1.5" fill="#00E5FF" className="animate-ping" style={{animationDuration: '3s'}}/>
+                    <circle cx="40" cy="30" r="1" fill="#fff" />
+                    <path d="M 10 10 L 40 30" stroke="rgba(0,229,255,0.3)" strokeWidth="0.5" />
+                    <path d="M 40 30 L 10 60" stroke="rgba(255,255,255,0.2)" strokeWidth="0.5" />
+                    <path d="M 10 10 L -20 30" stroke="rgba(0,229,255,0.3)" strokeWidth="0.5" />
+                  </pattern>
+                  <rect width="100%" height="100%" fill="url(#neural)" />
+               </svg>
+            </div>
 
             <div className="z-10 relative flex flex-col items-center md:items-start text-center md:text-left w-full mt-2 md:mt-0">
               <div className="bg-black/80 px-3 py-1 rounded-full text-[9px] md:text-[10px] font-bold tracking-widest uppercase mb-4 md:mb-6 inline-block font-mono border border-slate-700 text-[#00E5FF]">
@@ -123,29 +122,40 @@ export function Hero({ setActiveSection }: any) {
               </div>
               
               {/* Reduced font size for mobile (text-4xl) to ensure it fits perfectly */}
-              <h1 className="font-bold leading-tight mb-3 md:mb-4 tracking-tighter flex flex-col items-center md:items-start transition-all duration-700">
+              <h1 className="font-bold leading-tight mb-3 md:mb-4 tracking-tighter flex flex-col items-center md:items-start transition-all duration-700 z-10">
                 
-                {/* Now using explicit variants so it animates reliably on load */}
-                <motion.div 
-                  variants={nameVariants}
-                  className="inline-block relative drop-shadow-[0_0_15px_rgba(0,229,255,0.5)]"
-                >
-                  <span className="text-shimmer block pb-1 md:pb-2 transition-all duration-700 text-7xl md:text-7xl leading-none">
-                    Sai Kiran.
-                  </span>
-                </motion.div>
+                {/* Sai Kiran - Animated Letter by Letter from bottom */}
+                <div className="flex flex-wrap items-center justify-center md:justify-start drop-shadow-[0_0_15px_rgba(0,229,255,0.5)]">
+                  {"Sai Kiran.".split("").map((char, i) => (
+                    <motion.span key={i} className="inline-block overflow-hidden pb-1 md:pb-2">
+                      <motion.span
+                        className="inline-block text-shimmer text-7xl md:text-7xl leading-none"
+                        initial={{ y: "100%" }}
+                        animate={{ y: 0 }}
+                        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.05 * i }}
+                      >
+                        {char === " " ? "\u00A0" : char}
+                      </motion.span>
+                    </motion.span>
+                  ))}
+                </div>
                 
-                <motion.div
-                  variants={roleVariants}
-                  className="inline-block mt-2 md:mt-1"
-                >
-                  <span 
-                    className="inline-block group-hover:scale-[1.02] transition-all duration-700 cursor-default mobile-title-animate md:text-transparent md:stroke-text text-3xl md:text-7xl" 
-                    style={{ WebkitTextStroke: '1px rgba(255,255,255,0.3)'}}
-                  >
-                    Software<br/>Developer.
-                  </span>
-                </motion.div>
+                {/* Software Developer - Animated Word by Word from top */}
+                <div className="flex flex-wrap items-center justify-center md:justify-start mt-2 md:mt-1">
+                  {["Software", "Developer."].map((word, i) => (
+                    <motion.span key={i} className="inline-block overflow-hidden mr-2 md:mr-3 pb-1">
+                      <motion.span
+                        className="inline-block group-hover:scale-[1.02] transition-all duration-700 cursor-default text-transparent stroke-text text-3xl sm:text-5xl md:text-7xl"
+                        style={{ WebkitTextStroke: '1px rgba(255,255,255,0.3)' }}
+                        initial={{ y: "-100%", opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 0.8, ease: "backOut", delay: 0.2 * i + 0.5 }}
+                      >
+                        {word}
+                      </motion.span>
+                    </motion.span>
+                  ))}
+                </div>
               </h1>
               
               {/* Updated wording to perfectly match the provided image */}
