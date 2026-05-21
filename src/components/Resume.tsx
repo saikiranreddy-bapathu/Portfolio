@@ -45,7 +45,7 @@ export function Resume() {
               <div className="absolute inset-0 bg-gradient-to-b from-[#00E5FF]/5 to-transparent pointer-events-none opacity-50 z-20"></div>
               
               {/* Desktop PDF Viewer */}
-              <iframe src="/assets/resume.pdf" className="hidden md:block w-full h-full relative z-10 border-0" title="Resume"></iframe>
+              <iframe src="/assets/resume.pdf#toolbar=0&navpanes=0&scrollbar=0" className="hidden md:block w-full h-full relative z-10 border-0" title="Resume"></iframe>
               
               {/* Mobile Fallback */}
               <div className="md:hidden flex flex-col items-center justify-center h-full p-8 text-center text-slate-400 bg-slate-900 relative z-10">
