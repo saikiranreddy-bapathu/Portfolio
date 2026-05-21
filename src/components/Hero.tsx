@@ -95,7 +95,7 @@ export function Hero({ setActiveSection }: any) {
           {/* Main Profile Card - Added mobile-specific border and neon glow, resets on md (desktop) */}
           <motion.div 
             variants={childVariants} 
-            className="md:col-span-8 md:row-span-4 bg-slate-900/80 border border-[#00E5FF]/80 shadow-[0_0_40px_rgba(0,229,255,0.35)] md:border-slate-800/50 md:shadow-none rounded-[2rem] p-5 md:p-8 flex flex-col justify-center md:justify-between relative overflow-y-auto no-scrollbar group h-[65vh] md:h-full max-h-[65vh] md:max-h-none my-auto transition-all duration-700 ease-in-out mobile-card-animate"
+            className="md:col-span-8 md:row-span-4 bg-slate-900/80 border border-[#00E5FF]/80 shadow-[0_0_40px_rgba(0,229,255,0.35)] md:border-slate-800/50 md:shadow-none rounded-[2rem] p-5 md:p-8 flex flex-col justify-center md:justify-between relative overflow-y-auto overflow-x-hidden no-scrollbar group h-[65vh] md:h-full max-h-[65vh] md:max-h-none my-auto transition-all duration-700 ease-in-out mobile-card-animate"
           >
             
             {/* Subtle background glow */}

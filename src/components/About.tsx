@@ -6,18 +6,12 @@ function ProfilePhoto() {
   return (
     <div className="w-[80%] max-w-sm aspect-[4/5] border border-blue-900/50 rounded-2xl relative z-10 bg-slate-900 overflow-hidden group shadow-[0_0_40px_rgba(0,229,255,0.15)] transition-transform duration-500 hover:scale-[1.02]">
       
-      {/* Tech Background Design */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900 to-slate-900 flex flex-col items-center justify-center z-0">
-        <svg className="absolute inset-0 w-full h-full opacity-30" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="techGrid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#00E5FF" strokeWidth="0.5" />
-              <circle cx="40" cy="40" r="1.5" fill="#00E5FF" />
-              <circle cx="0" cy="0" r="1.5" fill="#00E5FF" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#techGrid)" />
-        </svg>
+      {/* Floating Orbs Background Design */}
+      <div className="absolute inset-0 bg-slate-950 flex flex-col items-center justify-center z-0 overflow-hidden rounded-2xl">
+        <div className="absolute w-40 h-40 bg-[#00E5FF]/20 rounded-full blur-3xl -top-10 -left-10 animate-[pulse_4s_ease-in-out_infinite]"></div>
+        <div className="absolute w-48 h-48 bg-blue-600/20 rounded-full blur-3xl -bottom-10 -right-10 animate-[pulse_6s_ease-in-out_infinite]"></div>
+        <div className="absolute w-32 h-32 bg-purple-500/20 rounded-full blur-2xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-[pulse_5s_ease-in-out_infinite]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_#020617_80%)]"></div>
       </div>
 
       {/* Actual Photo with spacing to show background */}

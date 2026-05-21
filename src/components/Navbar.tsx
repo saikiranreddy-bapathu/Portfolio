@@ -22,11 +22,11 @@ export function Navbar({ activeSection, setActiveSection }: any) {
     <header className="relative flex justify-between items-center px-6 py-6 z-50 no-print flex-shrink-0 w-full max-w-7xl mx-auto">
       
       {/* Brand / Logo */}
-      <div className="flex items-center space-x-2 sm:space-x-4 cursor-pointer group" onClick={() => handleNavClick('hero')}>
-        <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-slate-900 font-bold text-sm sm:text-xl italic font-serif shadow-lg group-hover:bg-white transition-all duration-300">SK</div>
-        <div className="flex items-center px-2 sm:px-4 py-1 sm:py-2 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-full shadow-[0_0_15px_rgba(0,0,0,0.5)] group-hover:bg-slate-800/50 transition-colors duration-300">
-          <span className="text-[7px] sm:text-[15px] font-medium tracking-wide uppercase text-slate-200">
-            Sai Kiran Reddy <span className="text-slate-500 mx-1 sm:mx-2">/</span> <span className="text-[#00E5FF]/90">Software Developer</span>
+      <div className="flex items-center space-x-2 sm:space-x-3 cursor-pointer group" onClick={() => handleNavClick('hero')}>
+        <div className="w-8 h-8 sm:w-10 sm:h-10 shrink-0 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-slate-900 font-bold text-sm sm:text-lg italic font-serif shadow-lg group-hover:bg-white transition-all duration-300">SK</div>
+        <div className="h-8 sm:h-10 flex items-center px-3 sm:px-4 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-full shadow-[0_0_15px_rgba(0,0,0,0.5)] group-hover:bg-slate-800/50 transition-colors duration-300">
+          <span className="text-[8px] sm:text-[13px] font-medium tracking-wide uppercase text-slate-200 whitespace-nowrap">
+            Sai Kiran Reddy <span className="text-slate-500 mx-1">/</span> <span className="text-[#00E5FF]/90">Software Developer</span>
           </span>
         </div>
       </div>
