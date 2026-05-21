@@ -43,18 +43,23 @@ export function Resume() {
             
             <div className="relative flex-1 w-full bg-slate-950 overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-b from-[#00E5FF]/5 to-transparent pointer-events-none opacity-50 z-20"></div>
-              <object data="/assets/resume.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" className="w-full h-full relative z-10 overflow-hidden" style={{ overflow: 'hidden' }}>
-                 <div className="flex flex-col items-center justify-center h-full p-8 text-center text-slate-400 bg-slate-900">
-                    <div className="w-20 h-20 bg-slate-800 rounded-2xl flex items-center justify-center mb-6 border border-slate-700 shadow-xl">
-                      <svg className="w-10 h-10 text-[#00E5FF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                    </div>
-                    <p className="mb-4 text-2xl text-white font-medium tracking-tight">Resume Not Found</p>
-                    <p className="text-sm text-slate-500 max-w-sm mx-auto leading-relaxed">
-                       Please ensure your resume PDF is located at <br/>
-                       <code className="text-[#00E5FF] bg-slate-950 px-2 py-1 rounded font-mono border border-slate-800 mt-2 inline-block shadow-inner">public/assets/resume.pdf</code>
-                    </p>
+              
+              {/* Desktop PDF Viewer */}
+              <iframe src="/assets/resume.pdf" className="hidden md:block w-full h-full relative z-10 border-0" title="Resume"></iframe>
+              
+              {/* Mobile Fallback */}
+              <div className="md:hidden flex flex-col items-center justify-center h-full p-8 text-center text-slate-400 bg-slate-900 relative z-10">
+                 <div className="w-20 h-20 bg-slate-800 rounded-2xl flex items-center justify-center mb-6 border border-slate-700 shadow-xl">
+                   <svg className="w-10 h-10 text-[#00E5FF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                  </div>
-              </object>
+                 <p className="mb-4 text-2xl text-white font-medium tracking-tight">Mobile PDF Viewer</p>
+                 <p className="text-sm text-slate-500 max-w-sm mx-auto leading-relaxed mb-8">
+                    Inline PDFs are not fully supported on mobile browsers. Please download the file to view it.
+                 </p>
+                 <a href="/assets/resume.pdf" download className="px-8 py-4 bg-white text-black hover:bg-[#00E5FF] hover:text-black rounded-full font-bold uppercase tracking-widest text-sm transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                   Download PDF
+                 </a>
+              </div>
             </div>
          </div>
       </motion.div>

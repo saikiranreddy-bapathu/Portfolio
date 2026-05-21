@@ -22,7 +22,7 @@ export function Skills({ setActiveSection }: { setActiveSection: (s: string) => 
         <h2 className="text-4xl font-bold tracking-tight">Capabilities &<br/>Technologies</h2>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 flex-grow">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 h-auto md:flex-grow pb-20 md:pb-0">
         {categories.map((cat, i) => (
           <motion.div 
             key={cat.title}
