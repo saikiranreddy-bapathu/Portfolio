@@ -27,7 +27,8 @@ export function Skills({ setActiveSection }: { setActiveSection: (s: string) => 
           <motion.div 
             key={cat.title}
             variants={childVariants} 
-            className={`bg-slate-900/90 border border-slate-800/50 rounded-3xl p-6 md:p-8 flex flex-col group hover:bg-slate-800/95 transition-colors shadow-xl ${cat.id ? 'cursor-pointer' : ''}`}
+            whileHover={{ scale: 1.01, y: -2 }}
+            className={`bg-slate-900/90 border border-slate-800/50 hover:border-white/10 hover:shadow-[0_0_30px_rgba(255,255,255,0.03)] rounded-3xl p-6 md:p-8 flex flex-col group transition-all duration-500 shadow-xl ${cat.id ? 'cursor-pointer' : ''}`}
             onClick={() => {
               if (cat.id === 'photoshop-skill') {
                 setActiveSection('photoshop');

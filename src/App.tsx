@@ -20,7 +20,15 @@ export default function App() {
 
   return (
     <div className="bg-[#020617] text-white min-h-screen h-screen overflow-hidden flex flex-col font-sans relative selection:bg-blue-900 selection:text-white isolate">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_#0F172A,_#020617_60%,_#000000_100%)] pointer-events-none -z-10" />
+      {/* Premium Animated Grid Background */}
+      <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden bg-[#020617]">
+        {/* Animated Grid */}
+        <div className="absolute inset-[-100%] w-[300%] h-[300%] bg-grid-pattern animate-grid opacity-30" />
+        
+        {/* Soft Ambient Glows (Mesh Gradient Feel) */}
+        <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-[#00E5FF]/10 blur-[120px] rounded-full mix-blend-screen animate-pulse" style={{ animationDuration: '8s' }} />
+        <div className="absolute bottom-[-20%] left-[-10%] w-[40%] h-[40%] bg-indigo-500/10 blur-[100px] rounded-full mix-blend-screen animate-pulse" style={{ animationDuration: '10s' }} />
+      </div>
       <Background3D />
       <CustomCursor />
       

@@ -23,8 +23,8 @@ export function Navbar({ activeSection, setActiveSection }: any) {
       
       {/* Brand / Logo */}
       <div className="flex items-center space-x-2 sm:space-x-3 cursor-pointer group" onClick={() => handleNavClick('hero')}>
-        <div className="w-8 h-8 sm:w-10 sm:h-10 shrink-0 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-slate-900 font-bold text-sm sm:text-lg italic font-serif shadow-lg group-hover:bg-white transition-all duration-300">SK</div>
-        <div className="h-8 sm:h-10 flex items-center px-3 sm:px-4 bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-full shadow-[0_0_15px_rgba(0,0,0,0.5)] group-hover:bg-slate-800/50 transition-colors duration-300">
+        <div className="w-8 h-8 sm:w-10 sm:h-10 shrink-0 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-slate-900 font-bold text-sm sm:text-lg italic font-serif shadow-lg group-hover:bg-white group-hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all duration-500">SK</div>
+        <div className="h-8 sm:h-10 flex items-center px-3 sm:px-4 bg-slate-900/30 backdrop-blur-2xl border border-white/10 rounded-full shadow-[0_4px_30px_rgba(0,0,0,0.5)] group-hover:bg-slate-800/40 transition-colors duration-500">
           <span className="text-[8px] sm:text-[13px] font-medium tracking-wide uppercase text-slate-200 whitespace-nowrap">
             Sai Kiran Reddy <span className="text-slate-500 mx-1">/</span> <span className="text-[#00E5FF]/90">Software Developer</span>
           </span>
@@ -32,22 +32,33 @@ export function Navbar({ activeSection, setActiveSection }: any) {
       </div>
 
       {/* Desktop Navigation */}
-      <nav className="hidden lg:flex items-center space-x-6 text-sm font-medium text-zinc-400">
+      <nav className="hidden lg:flex items-center space-x-2 text-sm font-bold text-zinc-400">
         {navItems.map(item => (
-          <span 
+          <motion.div 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             key={item.id} 
             onClick={() => handleNavClick(item.id)}
-            className={`cursor-pointer transition-all hover:text-white hover:tracking-wide ${activeSection === item.id ? 'text-white border-b-2 border-white pb-0.5' : ''}`}
+            className={`relative cursor-pointer px-4 py-2 rounded-full transition-colors z-10 flex items-center justify-center ${activeSection === item.id ? 'text-white' : 'hover:text-white'}`}
           >
+            {activeSection === item.id && (
+              <motion.div
+                layoutId="navbar-active-indicator"
+                className="absolute inset-0 bg-white/10 border border-white/20 rounded-full shadow-[0_0_15px_rgba(255,255,255,0.1)] -z-10"
+                transition={{ type: "spring", stiffness: 350, damping: 30 }}
+              />
+            )}
             {item.label}
-          </span>
+          </motion.div>
         ))}
-        <span 
+        <motion.button 
+          whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(255,255,255,0.4)" }}
+          whileTap={{ scale: 0.95 }}
           onClick={() => handleNavClick('contact')}
-          className="bg-zinc-800 px-4 py-1.5 rounded-full text-white ring-1 ring-zinc-700 cursor-pointer hover:bg-zinc-700 transition-colors"
+          className="ml-4 bg-white px-6 py-2 rounded-full text-slate-900 font-bold shadow-[0_0_15px_rgba(255,255,255,0.3)] hover:bg-slate-100 transition-all border border-transparent"
         >
           CONTACT
-        </span>
+        </motion.button>
       </nav>
 
       {/* Mobile Menu Button (Hamburger / Close) */}
@@ -75,11 +86,11 @@ export function Navbar({ activeSection, setActiveSection }: any) {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.nav 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="absolute top-[80px] left-0 right-0 mx-6 bg-slate-900/95 backdrop-blur-xl border border-white/10 rounded-2xl p-4 flex flex-col space-y-4 lg:hidden shadow-2xl z-40"
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute top-[80px] left-0 right-0 mx-6 bg-slate-900/90 backdrop-blur-2xl border border-white/10 rounded-2xl p-4 flex flex-col space-y-4 lg:hidden shadow-[0_10px_40px_rgba(0,0,0,0.8)] z-40"
           >
             {navItems.map(item => (
               <span 
@@ -92,7 +103,7 @@ export function Navbar({ activeSection, setActiveSection }: any) {
             ))}
             <span 
               onClick={() => handleNavClick('contact')} 
-              className="mt-4 bg-zinc-800 px-4 py-3 rounded-xl text-white text-center ring-1 ring-zinc-700 cursor-pointer text-sm font-semibold hover:bg-zinc-700 transition-colors"
+              className="mt-4 bg-white px-4 py-3 rounded-xl text-slate-900 text-center ring-1 ring-white cursor-pointer text-sm font-bold hover:bg-slate-200 transition-colors shadow-[0_0_15px_rgba(255,255,255,0.3)]"
             >
               HIRE ME
             </span>
