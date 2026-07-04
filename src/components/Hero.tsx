@@ -59,7 +59,7 @@ export function Hero({ setActiveSection }: any) {
       </div>
 
       <motion.div 
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6 flex-grow auto-rows-[auto] md:auto-rows-fr h-full min-h-0 relative z-10 w-full overflow-y-auto no-scrollbar pb-10"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-8 gap-4 md:gap-6 flex-grow auto-rows-[auto] md:auto-rows-fr h-full min-h-0 relative z-10 w-full overflow-y-auto no-scrollbar pb-10"
         variants={gridContainerVariants}
         initial="initial"
         animate="animate"
@@ -68,7 +68,7 @@ export function Hero({ setActiveSection }: any) {
         {/* Intro Card */}
         <motion.div 
           variants={gridItemVariants}
-          className="col-span-1 md:col-span-2 lg:col-span-3 row-span-1 md:row-span-2 p-6 md:p-10 rounded-[2.5rem] flex flex-col justify-between neo-skeuo relative overflow-hidden"
+          className="col-span-1 md:col-span-2 lg:col-span-5 row-span-1 md:row-span-2 p-6 md:p-10 rounded-[2.5rem] flex flex-col justify-between neo-skeuo relative overflow-hidden"
         >
           <div className="hidden md:flex absolute top-6 right-6 z-30 gap-2">
              <div className="px-3 py-1.5 rounded-full bg-slate-900/60 border border-white/5 shadow-inner text-xs font-mono text-slate-300 flex items-center gap-2">
@@ -106,7 +106,7 @@ export function Hero({ setActiveSection }: any) {
         {/* Selected Work */}
         <motion.div 
           variants={gridItemVariants}
-          className="col-span-1 md:col-span-2 lg:col-span-2 row-span-1 md:row-span-2 rounded-[2.5rem] overflow-hidden relative group cursor-pointer flex flex-col items-center justify-center transition-all duration-500 neo-skeuo h-[350px] md:h-auto"
+          className="col-span-1 md:col-span-2 lg:col-span-3 row-span-1 md:row-span-2 rounded-[2.5rem] overflow-hidden relative group cursor-pointer flex flex-col items-center justify-center transition-all duration-500 neo-skeuo h-[350px] md:h-auto"
           onClick={() => setActiveSection('projects')}
         >
           <div className="absolute top-6 right-6 z-30 w-10 h-10 rounded-full flex items-center justify-center transform group-hover:-translate-y-1 group-hover:translate-x-1 transition-all neo-skeuo-button">
@@ -151,7 +151,7 @@ export function Hero({ setActiveSection }: any) {
         {/* My Stack */}
         <motion.div 
           variants={gridItemVariants}
-          className="col-span-1 md:col-span-2 lg:col-span-3 row-span-1 text-white rounded-[2.5rem] p-6 md:p-8 flex flex-col justify-between cursor-pointer group relative overflow-hidden transition-all duration-500 neo-skeuo min-h-[220px]"
+          className="col-span-1 md:col-span-2 lg:col-span-4 row-span-1 text-white rounded-[2.5rem] p-6 md:p-8 flex flex-col justify-between cursor-pointer group relative overflow-hidden transition-all duration-500 neo-skeuo min-h-[250px]"
           onClick={() => setActiveSection('skills')}
         >
           <div className="absolute top-6 right-6 z-30 w-10 h-10 rounded-full flex items-center justify-center transform group-hover:-translate-y-1 group-hover:translate-x-1 transition-all neo-skeuo-button">
@@ -181,7 +181,7 @@ export function Hero({ setActiveSection }: any) {
         {/* Stats */}
         <motion.div 
           variants={gridItemVariants}
-          className="col-span-1 md:col-span-1 lg:col-span-1 row-span-1 rounded-[2.5rem] p-6 md:p-8 flex flex-col justify-center items-center text-center group transition-all duration-500 neo-skeuo relative min-h-[220px]"
+          className="col-span-1 md:col-span-1 lg:col-span-2 row-span-1 rounded-[2.5rem] p-6 md:p-8 flex flex-col justify-center items-center text-center group transition-all duration-500 neo-skeuo relative min-h-[250px]"
         >
           <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-slate-800/80 border border-white/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-500 text-slate-300 shadow-inner">
             <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -196,7 +196,7 @@ export function Hero({ setActiveSection }: any) {
         {/* Contact */}
         <motion.div 
           variants={gridItemVariants}
-          className="col-span-1 md:col-span-1 lg:col-span-1 row-span-1 rounded-[2.5rem] p-6 md:p-8 relative overflow-hidden group cursor-pointer flex flex-col justify-center items-center neo-skeuo min-h-[220px]"
+          className="col-span-1 md:col-span-1 lg:col-span-2 row-span-1 rounded-[2.5rem] p-6 md:p-8 relative overflow-hidden group cursor-pointer flex flex-col justify-center items-center neo-skeuo min-h-[250px]"
           onClick={() => setActiveSection('contact')}
         >
           <div className="absolute top-6 right-6 z-30 w-10 h-10 text-white rounded-full flex items-center justify-center transform group-hover:-translate-y-1 group-hover:translate-x-1 transition-all duration-500 neo-skeuo-button">
